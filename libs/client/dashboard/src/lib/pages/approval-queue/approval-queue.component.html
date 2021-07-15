@@ -1,8 +1,6 @@
-<dragonfish-approval-queue-toolbar [route]="route" [pageNum]="pageNum"></dragonfish-approval-queue-toolbar>
-
 <div class="approval-queue-container mx-auto my-4" *ngIf="route.children.length === 0">
     <div class="queue-list">
-        <h4 style="text-align: center" *ngIf="queueIsEmpty()">Surprisingly, no one's submitted anything yet.</h4>
+        <h4 class="text-center text-2xl" *ngIf="queueIsEmpty()">Surprisingly, no one's submitted anything yet.</h4>
         <div class="work-list" *ngIf="queue && queue.docs">
             <div
                 class="work-item"

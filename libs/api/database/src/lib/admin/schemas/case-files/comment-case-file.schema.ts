@@ -12,9 +12,9 @@ export class CommentCaseFileDocument extends Document implements CommentCaseFile
     reports: ReportDocument[];
     notes: NotesDocument[];
     isClosed: boolean;
+    claimedBy: string | FrontendUser;
     action: {
         hasType: ActionType;
-        takenBy: string | FrontendUser;
         date: Date;
         reason: string;
     };

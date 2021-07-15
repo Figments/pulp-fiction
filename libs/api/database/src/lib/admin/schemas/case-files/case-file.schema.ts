@@ -19,25 +19,25 @@ export class CaseFileDocument extends Document implements CaseFile {
     @Prop({ default: false })
     isClosed: boolean;
 
+    @Prop({
+        type: String,
+        ref: 'User',
+        autopopulate: {
+            select: '-password -email -audit.sessions -audit.termsAgree -audit.emailConfirmed -audit.deleted -updatedAt',
+        },
+        default: null,
+    })
+    claimedBy: string | FrontendUser;
+
     @Prop(
         raw({
             hasType: { type: String, enum: Object.keys(ActionType), default: ActionType.None },
-            takenBy: {
-                type: String,
-                ref: 'User',
-                autopopulate: {
-                    select:
-                        '-password -email -audit.sessions -audit.termsAgree -audit.emailConfirmed -audit.deleted -updatedAt',
-                },
-                default: null,
-            },
             date: { type: Date, default: null },
             reason: { type: String, default: null },
         }),
     )
     action: {
         hasType: ActionType;
-        takenBy: string | FrontendUser;
         date: Date;
         reason: string;
     };

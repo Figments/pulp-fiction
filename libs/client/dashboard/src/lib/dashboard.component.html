@@ -1,81 +1,93 @@
-<div class="flex flex-col w-full h-screen">
-    <div class="dash-nav shadow-lg sticky top-0 z-40">
-        <div class="w-11/12 mx-auto py-4">
-            <div class="flex flex-row items-center">
-                <i-feather name="grid" class="text-white relative top-0.5 mr-4"></i-feather>
-                <h3 class="text-4xl text-white relative top-1.5 font-semibold pr-4">
-                    Dashboard
-                </h3>
-                <div class="flex-1"><!--spacer--></div>
-                <button class="border-none shadow-none rounded-full p-2.5">
-                    <i-feather name="inbox"></i-feather>
-                </button>
-                <button class="border-none shadow-none rounded-full p-2.5">
-                    <i-feather name="bell"></i-feather>
-                </button>
-            </div>
-            <div class="flex flex-row items-center">
-                <a
-                    class="link"
-                    [routerLink]="['overview']"
-                    [routerLinkActive]="'active'"
-                >
-                    <span class="link-icon"><i-feather name="bar-chart-2"></i-feather></span>
-                    Overview
-                </a>
-                <a
-                    class="link"
-                    [routerLink]="['approval-queue']"
-                    [routerLinkActive]="'active'"
-                >
-                    <span class="link-icon"><i-feather name="list"></i-feather></span>
-                    Approval Queue
-                </a>
-                <a
-                    class="link"
-                    [routerLink]="['group-queue']"
-                    [routerLinkActive]="'active'"
-                >
-                    <span class="link-icon"><i-feather name="user-check"></i-feather></span>
-                    Groups
-                </a>
-                <a
-                    class="link"
-                    [routerLink]="['reports']"
-                    [routerLinkActive]="'active'"
-                >
-                    <span class="link-icon"><i-feather name="alert-triangle"></i-feather></span>
-                    Reports
-                </a>
-                <a
-                    class="link"
-                    [routerLink]="['users-management']"
-                    [routerLinkActive]="'active'"
-                >
-                    <span class="link-icon"><i-feather name="users"></i-feather></span>
-                    Users
-                </a>
-                <a
-                    class="link"
-                    [routerLink]="['audit-log']"
-                    [routerLinkActive]="'active'"
-                >
-                    <span class="link-icon"><i-feather name="clipboard"></i-feather></span>
-                    Audit Log
-                </a>
-                <a
-                    class="link"
-                    [routerLink]="['quill-migrator']"
-                    [routerLinkActive]="'active'"
-                >
-                    Quill Migrator
-                </a>
-            </div>
-        </div>
+<dragonfish-topbar>
+    <div class="topbar-header">
+        <rmx-icon name="dashboard-line"></rmx-icon>
+        <h3>Dashboard</h3>
     </div>
+    <div class="topbar-tools">
+        <div class="flex-1"></div>
+        <ng-container [ngSwitch]="selectedPage">
+            <ng-container *ngSwitchCase="pages.ApprovalQueue">
+                <dragonfish-approval-queue-toolbar></dragonfish-approval-queue-toolbar>
+            </ng-container>
+        </ng-container>
+    </div>
+</dragonfish-topbar>
 
-    <ng-scrollbar>
-        <router-outlet></router-outlet>
-    </ng-scrollbar>
+<div class="flex" style="height: calc(100vh - 52px);">
+    <dragonfish-pagebar>
+        <a
+            class="link"
+            [routerLink]="['overview']"
+            [routerLinkActive]="'active'"
+        >
+            <span class="link-icon"><rmx-icon name="bar-chart-line"></rmx-icon></span>
+            Overview
+        </a>
+        <a
+            class="link"
+            [routerLink]="['approval-queue']"
+            [routerLinkActive]="'active'"
+        >
+            <span class="link-icon"><rmx-icon name="list-unordered"></rmx-icon></span>
+            Approval Queue
+        </a>
+        <a
+            class="link"
+            [ngClass]="{ 'active': showModTools }"
+            (click)="showModTools = !showModTools"
+        >
+            <span class="link-icon"><rmx-icon name="briefcase-2-line"></rmx-icon></span>
+            <span class="text">Moderation</span>
+            <span class="link-icon" *ngIf="!showModTools; else openedDropdown"><rmx-icon name="arrow-down-s-line"></rmx-icon></span>
+            <ng-template #openedDropdown>
+                <span class="link-icon"><rmx-icon name="arrow-up-s-line"></rmx-icon></span>
+            </ng-template>
+        </a>
+        <div class="dropdown-nav" [@inOutAnimation] *ngIf="showModTools">
+            <a
+                class="link dropdown-item"
+                [routerLink]="['case-files']"
+                [routerLinkActive]="'active'"
+            >
+                <span class="link-icon"><rmx-icon name="clipboard-line"></rmx-icon></span>
+                Case Files
+            </a>
+            <a
+                class="link dropdown-item"
+                [routerLink]="['audit-log']"
+                [routerLinkActive]="'active'"
+            >
+                <span class="link-icon"><rmx-icon name="history-line"></rmx-icon></span>
+                Audit Log
+            </a>
+            <a
+                class="link dropdown-item"
+                [routerLink]="['users-management']"
+                [routerLinkActive]="'active'"
+            >
+                <span class="link-icon"><rmx-icon name="user-line"></rmx-icon></span>
+                Users
+            </a>
+            <a
+                class="link dropdown-item"
+                [routerLink]="['group-queue']"
+                [routerLinkActive]="'active'"
+            >
+                <span class="link-icon"><rmx-icon name="group-line"></rmx-icon></span>
+                Groups
+            </a>
+        </div>
+        <a
+            class="link"
+            [routerLink]="['quill-migrator']"
+            [routerLinkActive]="'active'"
+        >
+            Quill Migrator
+        </a>
+    </dragonfish-pagebar>
+    <div class="w-full">
+        <ng-scrollbar>
+            <router-outlet></router-outlet>
+        </ng-scrollbar>
+    </div>
 </div>
-

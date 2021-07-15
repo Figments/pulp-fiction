@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -10,11 +9,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     imports: [
         FlexLayoutModule,
-        MatSidenavModule,
         MatIconModule,
         MatMenuModule,
         MatTooltipModule,
@@ -24,10 +23,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatSnackBarModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
+        MatExpansionModule,
     ],
     exports: [
         FlexLayoutModule,
-        MatSidenavModule,
         MatIconModule,
         MatMenuModule,
         MatTooltipModule,
@@ -37,6 +36,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatSnackBarModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
+        MatExpansionModule,
     ],
 })
 export class MaterialModule {}

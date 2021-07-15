@@ -1,0 +1,67 @@
+<ng-container *ngIf="route.children.length === 0; else outlet">
+    <ng-container *ngIf="caseQuery.loading$ | async else notLoading">
+        <div class="flex flex-row items-center justify-center h-72">
+            <mat-spinner></mat-spinner>
+        </div>
+    </ng-container>
+
+    <ng-template #notLoading>
+        <ng-container *ngIf="caseQuery.all$ | async as caseFiles">
+            <ng-container *ngIf="caseFiles.length === 0; else notEmpty">
+                <div class="empty">
+                    <h3>Looks like there something missing here...</h3>
+                    <p>If you think this is an error, contact your system administrator.</p>
+                </div>
+            </ng-container>
+            <ng-template #notEmpty>
+                <div class="w-10/12 mx-auto my-8">
+                    <ng-container *ngFor="let caseFile of caseFiles">
+                        <div class="flex items-center w-full my-2">
+                            <div
+                                class="claim-button h-[74px] w-[74px] p-2.5 border border-r-0 rounded-l-md border-gray-600 dark:border-white"
+                                [matTooltip]="'Claim Case'"
+                                [matTooltipClass]="'offprint-tooltip'"
+                            >
+                                <rmx-icon name="add-box-line"></rmx-icon>
+                            </div>
+                            <div
+                                class="case-file flex items-center flex-1 p-2.5 rounded-r-md border border-gray-600 dark:border-white"
+                                (click)="viewCase(caseFile._id)"
+                            >
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-medium">Case #{{ caseFile._id }}</h3>
+                                    <ng-container [ngSwitch]="caseFile.kind">
+                                        <ng-container *ngSwitchCase="caseKind.Users">
+                                            Regarding User <strong class="ml-1">{{ $any(caseFile).user.username }}</strong>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="caseKind.Content">
+                                            Regarding <strong class="ml-1">"{{ $any(caseFile).content.title }}"</strong>
+                                        </ng-container>
+                                    </ng-container>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <h3 class="text-xl font-medium">Reports</h3>
+                                    <span>{{ caseFile.reports.length | abbreviate }}</span>
+                                </div>
+                                <div class="h-full mx-1 text-4xl font-light">|</div>
+                                <div class="flex flex-col items-center">
+                                    <h3 class="text-xl font-medium">Notes</h3>
+                                    <span>{{ caseFile.notes.length | abbreviate }}</span>
+                                </div>
+                                <div class="h-full mx-1 text-4xl font-light">|</div>
+                                <div class="flex flex-col items-center">
+                                    <h3 class="text-xl font-medium">Updated</h3>
+                                    <span>{{ caseFile.updatedAt | amLocal | amTimeAgo }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-template>
+        </ng-container>
+    </ng-template>
+</ng-container>
+
+<ng-template #outlet>
+    <router-outlet></router-outlet>
+</ng-template>

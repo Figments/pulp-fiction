@@ -1,5 +1,5 @@
 div.menu-box {
-    @apply border rounded-lg w-64 flex flex-col;
+    @apply border rounded-md w-64 flex flex-col;
     border-color: var(--borders);
     background: var(--background);
     div.cover-pic {

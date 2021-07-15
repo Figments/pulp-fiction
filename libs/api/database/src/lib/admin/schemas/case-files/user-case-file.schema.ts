@@ -11,9 +11,9 @@ export class UserCaseFileDocument extends Document implements UserCaseFile {
     reports: ReportDocument[];
     notes: NotesDocument[];
     isClosed: boolean;
+    claimedBy: string | FrontendUser;
     action: {
         hasType: ActionType;
-        takenBy: string | FrontendUser;
         date: Date;
         reason: string;
     };
@@ -25,8 +25,7 @@ export class UserCaseFileDocument extends Document implements UserCaseFile {
         type: String,
         ref: 'User',
         autopopulate: {
-            select:
-                '-password -email -audit.sessions -audit.termsAgree -audit.emailConfirmed -audit.deleted -updatedAt',
+            select: '-password -email -audit.sessions -audit.termsAgree -audit.emailConfirmed -audit.deleted -updatedAt',
         },
         required: true,
     })

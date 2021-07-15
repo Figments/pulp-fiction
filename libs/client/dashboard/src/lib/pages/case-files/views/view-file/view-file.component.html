@@ -1,0 +1,27 @@
+<ng-container *ngIf="fileQuery.current$ | async as current">
+    <div class="w-full h-screen">
+        <ng-scrollbar>
+            <div class="w-11/12 mx-auto my-4">
+                <div class="w-full flex items-center p-2.5 mb-4 border-b border-gray-600 dark:border-white">
+                    <div class="flex-1">
+                        <h1 class="text-4xl font-medium">Case #{{ current._id }}</h1>
+                        <span class="text-2xl italic">
+                            <ng-container [ngSwitch]="current.kind">
+                                <ng-container *ngSwitchCase="caseKind.Users">
+                                    Regarding User <strong class="ml-1">{{ $any(current).user.username }}</strong>
+                                </ng-container>
+                                <ng-container *ngSwitchCase="caseKind.Content">
+                                    Regarding <strong class="ml-1">"{{ $any(current).content.title }}"</strong>
+                                </ng-container>
+                            </ng-container>
+                        </span>
+                    </div>
+                    <button><rmx-icon name="add-box-line"></rmx-icon>Claim</button>
+                </div>
+                <div class="w-full">
+
+                </div>
+            </div>
+        </ng-scrollbar>
+    </div>
+</ng-container>

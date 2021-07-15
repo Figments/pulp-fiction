@@ -79,14 +79,31 @@ button.mat-menu-item {
     stroke: var(--accent);
 }
 
-/* Mat sidenav */
-.mat-drawer-container {
-    width: 100%;
-    background-color: var(--background) !important;
+/* Mat Expansion Panel */
+.mat-expansion-panel {
+    background: var(--background) !important;
     color: var(--text-color) !important;
+    border: 1px solid var(--borders) !important;
 }
 
-.mat-drawer {
-    background-color: var(--background) !important;
-    color: var(--text-color) !important;
+.mat-expansion-panel-header-description, .mat-expansion-indicator {
+    position: relative !important;
+    top: -0.25rem;
+    &::after {
+        color: var(--text-color) !important;
+        font-size: 0.875rem !important;
+    }
+}
+
+.mat-expansion-panel-header {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1rem !important;
+    border-radius: 0.375rem !important;
+}
+
+.mat-expansion-panel-header-title {
+    color: var(--accent) !important;
+    font-family: 'Josefin Sans', sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 500 !important;
 }

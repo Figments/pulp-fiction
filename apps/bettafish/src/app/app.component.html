@@ -1,6 +1,6 @@
 <ng-container *ngIf="!mobileMode; else mobile">
     <ng-container *ngIf="showNav; else onRegistrationDesktop">
-        <div class="absolute w-full h-2.5 z-50" *ngIf="electron.isElectron" style="-webkit-app-region: drag;"></div>
+        <div class="absolute w-full h-4 z-50" *ngIf="electron.isElectron" style="-webkit-app-region: drag;"></div>
         <main class="flex flex-row h-screen">
             <dragonfish-sidebar></dragonfish-sidebar>
             <div class="flex-auto w-full h-screen">

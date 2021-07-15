@@ -17,10 +17,10 @@
             ></dragonfish-text-field>
         </form>
         <div class="my-2 border-b w-full border-white"><!--spacer--></div>
-        <a [routerLink]="['/browse']" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="link" [routerLink]="['/browse']" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
             <span class="link-icon"><rmx-icon name="sun-line"></rmx-icon></span>A taste of today
         </a>
-        <a [routerLink]="['newest-works']" [routerLinkActive]="'active'">
+        <a class="link" [routerLink]="['newest-works']" [routerLinkActive]="'active'">
             <span class="link-icon"><rmx-icon name="newspaper-line"></rmx-icon></span>What's new
         </a>
     </dragonfish-pagebar>

@@ -1,0 +1,24 @@
+div.case-file {
+    &:hover {
+        cursor: pointer;
+        background: var(--accent);
+        color: white;
+        h3 {
+            color: white;
+        }
+    }
+}
+div.claim-button {
+    &:hover {
+        cursor: pointer;
+        background: var(--accent);
+        color: white;
+    }
+    rmx-icon {
+        width: 100% !important;
+        height: 100% !important;
+        svg {
+           stroke-width: 1;
+        }
+    }
+}

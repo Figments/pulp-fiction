@@ -34,6 +34,18 @@ export class CaseFilesController {
     }
 
     @UseGuards(RolesGuard([Roles.Moderator, Roles.Admin]))
+    @Patch('claim-file')
+    public async claimFile(@User() user: JwtPayload, @Query('id') id: number) {
+        return await this.caseFilesStore.claimFile(user, id);
+    }
+
+    @UseGuards(RolesGuard([Roles.Moderator, Roles.Admin]))
+    @Patch('revoke-claim')
+    public async revokeClaim(@User() user: JwtPayload, @Query('id') id: number) {
+        return await this.caseFilesStore.revokeClaim(user, id);
+    }
+
+    @UseGuards(RolesGuard([Roles.Moderator, Roles.Admin]))
     @Patch('add-note')
     public async addNote(@User() user: JwtPayload, @Query('id') id: number, @Body() form: NoteForm) {
         return await this.caseFilesStore.addNote(user, id, form);

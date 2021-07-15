@@ -7,6 +7,7 @@ import { MaterialModule } from '@dragonfish/client/material';
 import { UiModule } from '@dragonfish/client/ui';
 import { PipesModule } from '@dragonfish/client/pipes';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { MomentModule } from 'ngx-moment';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 /* Pages */
@@ -22,6 +23,7 @@ import { GroupQueueComponent } from './pages/group-queue';
 import { OverviewComponent } from './pages/overview';
 import { ReportsComponent } from './pages/reports';
 import { UsersManagementComponent } from './pages/users-management';
+import { CaseFilesComponent, ViewFileComponent } from './pages/case-files';
 
 /* Components */
 import { ApprovalQueueToolbarComponent, ContentPreviewComponent } from './components/approval-queue';
@@ -50,6 +52,8 @@ Quill.register(Divider);
         ApprovalQueueToolbarComponent,
         ContentPreviewComponent,
         QuillMigratorComponent,
+        CaseFilesComponent,
+        ViewFileComponent,
     ],
     imports: [
         CommonModule,
@@ -60,6 +64,7 @@ Quill.register(Divider);
         UiModule,
         NgxPaginationModule,
         PipesModule,
+        MomentModule,
         QuillModule.forRoot({
             format: 'json',
             modules: {

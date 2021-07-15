@@ -11,9 +11,9 @@ export interface CaseFile {
     reports: Report[];
     notes: Note[];
     isClosed: boolean;
+    claimedBy: string | FrontendUser;
     action: {
         hasType: ActionType;
-        takenBy: string | FrontendUser;
         date: Date;
         reason: string;
     };

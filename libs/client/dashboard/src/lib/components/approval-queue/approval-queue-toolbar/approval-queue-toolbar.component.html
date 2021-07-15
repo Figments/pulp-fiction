@@ -1,56 +1,25 @@
-<div class="tools">
-    <div class="w-11/12 mx-auto flex flex-row items-center justify-center">
-        <ng-container *ngIf="queueQuery.selected$ | async as doc; else nothingSelected">
-            <button matRipple class="tool" (click)="goBack()"><i-feather name="chevron-left"></i-feather>Back</button>
-            <span class="mx-2"></span>
+<div class="flex items-center">
+    <ng-container *ngIf="queueQuery.selected$ | async as doc; else nothingSelected">
+        <button matRipple class="tool" (click)="goBack()"><rmx-icon name="arrow-left-s-line"></rmx-icon>Back</button>
+        <span class="mx-2"></span>
+        <button matRipple class="tool left" (click)="approveWork(doc)">
+            <rmx-icon name="check-line"></rmx-icon>Approve
+        </button>
+        <button matRipple class="tool end" (click)="rejectWork(doc)"><rmx-icon name="close-line"></rmx-icon>Reject</button>
+        <span class="mx-2"></span>
+        <button matRipple class="tool left disabled" [matTooltip]="'Filter'" [matTooltipClass]="'offprint-tooltip'">
+            <rmx-icon name="filter-line" class="mr-0"></rmx-icon>
+        </button>
+    </ng-container>
 
-            <button matRipple class="tool disabled">
-                Claims<i-feather name="chevron-down" class="on-right"></i-feather>
-            </button>
-            <span class="mx-2"></span>
-
-            <button matRipple class="tool left disabled" [matTooltip]="'Filter'" [matTooltipClass]="'offprint-tooltip'">
-                <i-feather name="filter" class="no-text"></i-feather>
-            </button>
-            <button
-                matRipple
-                class="tool end disabled"
-                [matTooltip]="'Refresh'"
-                [matTooltipClass]="'offprint-tooltip'"
-            >
-                <i-feather name="refresh-cw" class="no-text"></i-feather>
-            </button>
-            <span class="mx-2"></span>
-
-            <button matRipple class="tool left" (click)="approveWork(doc)">
-                <i-feather name="check"></i-feather>Approve
-            </button>
-            <button matRipple class="tool end" (click)="rejectWork(doc)"><i-feather name="x"></i-feather>Reject</button>
-        </ng-container>
-
-        <ng-template #nothingSelected>
-            <button matRipple class="tool disabled"><i-feather name="chevron-left"></i-feather>Back</button>
-            <span class="mx-2"></span>
-
-            <button matRipple class="tool disabled">
-                Claims<i-feather name="chevron-down" class="no-text"></i-feather>
-            </button>
-            <span class="mx-2"></span>
-            <button matRipple class="tool" [matTooltip]="'Filter'" [matTooltipClass]="'offprint-tooltip'">
-                <i-feather name="filter" class="no-text"></i-feather>
-            </button>
-            <button
-                matRipple
-                class="tool"
-                [matTooltip]="'Refresh'"
-                [matTooltipClass]="'offprint-tooltip'"
-                (click)="forceRefresh()"
-            >
-                <i-feather name="refresh-cw" class="no-text"></i-feather>
-            </button>
-            <span class="mx-2"></span>
-            <button matRipple class="tool left disabled"><i-feather name="check"></i-feather>Approve</button>
-            <button matRipple class="tool end disabled"><i-feather name="x"></i-feather>Reject</button>
-        </ng-template>
-    </div>
+    <ng-template #nothingSelected>
+        <button matRipple class="tool disabled"><rmx-icon name="arrow-left-s-line"></rmx-icon>Back</button>
+        <span class="mx-2"></span>
+        <button matRipple class="tool left disabled"><rmx-icon name="check-line"></rmx-icon>Approve</button>
+        <button matRipple class="tool end disabled"><rmx-icon name="close-line"></rmx-icon>Reject</button>
+        <span class="mx-2"></span>
+        <button matRipple class="tool" [matTooltip]="'Filter'" [matTooltipClass]="'offprint-tooltip'">
+            <rmx-icon name="filter-line" class="mr-0"></rmx-icon>
+        </button>
+    </ng-template>
 </div>
